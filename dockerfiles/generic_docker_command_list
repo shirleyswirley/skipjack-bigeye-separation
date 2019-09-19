@@ -1,0 +1,60 @@
+-----------------------------------------------------
+GENERIC COMMANDS
+-----------------------------------------------------
+--> see list of possible docker commands
+docker --help
+
+--> see useful general info about docker on your machine
+docker info
+
+--> simplest way to run a docker container
+docker run -i -t <your docker container name> /bin/bash
+Example: docker run -i -t docker2:v1 /bin/bash
+
+--> use premade docker containers via docker hub!
+Example of using miniconda docker container (see https://hub.docker.com/r/continuumio/miniconda3):
+docker pull continuumio/miniconda3
+docker run -i -t continuumio/miniconda3 /bin/bash
+
+--> OR build from Dockerfile (. means the dir you're in that has the file called Dockerfile)
+docker build -t <your docker container name> .
+Example: docker build -t docker2:v1 .
+
+--> create a personalized Dockerfile to customize your docker container (but can start from a premade one and add stuff! i.e., don't have to start from scratch)
+Dockerfile example:
+FROM continuumio/miniconda3
+RUN conda install jupyterlab
+RUN conda update jupyterlab
+RUN conda install geopandas
+RUN pip install gpdvega
+RUN conda install scikit-learn
+RUN conda install -c conda-forge altair vega_datasets
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get -y install build-essential libssl-dev libreadline-dev
+CMD jupyter lab --notebook-dir=/opt/dssg-hot --ip='0.0.0.0' --port=8877 --no-browser --allow-root
+
+--> run a docker container + linking folders btwn local machine and docker container
+docker run -i -t --mount type=bind,src=<path to folder on your local machine>,dst=<path to folder in the docker container> <your docker container name> /bin/bash
+Example: docker run -i -t --mount type=bind,src=/home/ubuntu/dssg-hot,dst=/home/dssg-hot continuumio/miniconda3 /bin/bash
+
+--> delete all your built containers/images!! warning!! will need to rebuild everything!!
+docker system prune -a
+
+--> less extreme version of docker system prune
+docker system prune
+
+--> see what docker containers are running
+docker ps
+
+--> see all docker containers
+docker ps -a
+
+docker image ls
+
+docker container ls
+
+--> run same docker container in another terminal tab
+(first open another terminal tab)
+docker ps 
+(get the container id you want)
+docker exec -it <container id you want> /bin/bash
