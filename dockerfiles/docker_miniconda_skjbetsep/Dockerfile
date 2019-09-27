@@ -9,6 +9,7 @@ RUN conda install -c conda-forge cmocean
 RUN conda install -c conda-forge altair vega_datasets
 RUN conda install -c conda-forge geopandas
 RUN conda install -c conda-forge xarray
+RUN conda install -c conda-forge cartopy
 RUN conda install -c conda-forge nodejs
 RUN jupyter labextension install jupyterlab_vim 
 #RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
