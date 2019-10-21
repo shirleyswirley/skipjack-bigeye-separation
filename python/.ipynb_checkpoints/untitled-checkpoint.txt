@@ -1,0 +1,10 @@
+for irow in range(0,len(dfatp)):
+    if ~np.isnan(dfatp['ATP'].iloc[irow]):
+        if dfatp['ATP'].iloc[irow]==-1:
+            colornow = 'red'
+        elif dfatp['ATP'].iloc[irow]==0:
+            colornow = 'yellow'
+        elif dfatp['ATP'].iloc[irow]==1:
+            colornow = 'green'
+        ax.axvspan(dfatp['lbinedges'].iloc[irow], dfatp['rbinedges'].iloc[irow],
+                    ymin=0, ymax=1, alpha=0.8, color=colornow)
