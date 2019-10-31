@@ -1,27 +1,36 @@
 if plotbarorhist=='bar':
     binwidth = bincenters[1]-bincenters[0]
-    ax.bar(bincenters-binwidth/6, ivcounts/ivcounts.sum(), binwidth/3, color='black', label=ivnicename)
-    ax.bar(bincenters+binwidth/6, dvcounts/dvcounts.sum(), binwidth/3, color='gray', label=dvnicename)
+    ax.bar(bincenters-binwidth/6, ivcounts/ivcounts.sum(), binwidth/3, color='silver', label=ivnicename)
+    ax.bar(bincenters+binwidth/6, dvcounts/dvcounts.sum(), binwidth/3, color='lightskyblue', label=dvnicename)
 elif plotbarorhist=='hist':
     ax.hist(iv, bins=binedges, label='hist', color='white', edgecolor='black')
 ax.set_ylabel(ivnicename + ' or ' + dvnicename + '\nFrequency')
 ax.set_xlabel(ivnicename + ' [' + ivunits + ']')
 
+quotcolor = 'mediumblue'
+
 ax1 = ax.twinx()
-ax1.plot(bincenters, dvquot, 'r-', label='quot')
-ax1.plot(bincenters, dvquot, color='r', marker='o', label='_nolegend_')
+ax1.plot(bincenters, dvquot, color=quotcolor, linestyle='-', label='quot')
+ax1.plot(bincenters, dvquot, color=quotcolor, marker='o', markersize=5, label='_nolegend_')
 
 if plotqlimsreplaceT==1: # Bernal et al 2007 PAPER
-    ax1.plot(bincenters, qlimsreplaceT.iloc[0], 'r--', label='w/ repl')
-    ax1.plot(bincenters, qlimsreplaceT.iloc[1], 'r--', label='_nolegend_')
+    ax1.plot(bincenters, qlimsreplaceT.iloc[0], color=quotcolor, linestyle='--', label='w/ repl')
+    ax1.plot(bincenters, qlimsreplaceT.iloc[1], color=quotcolor, linestyle='--', label='_nolegend_')
 if plotqlimsreplaceF==1: # Bernal et al 2007 CODE
     ax1.plot(bincenters, qlimsreplaceF.iloc[0], 'g--', label='w/o repl')
     ax1.plot(bincenters, qlimsreplaceF.iloc[1], 'g--', label='_nolegend_')
 
-ax1.yaxis.label.set_color('r')
-ax1.tick_params(axis='y', colors='r')
-ax1.spines['right'].set_edgecolor('r')
+ax1.yaxis.label.set_color(quotcolor)
+ax1.tick_params(axis='y', colors=quotcolor)
+ax1.spines['right'].set_edgecolor(quotcolor)
 ax1.set_ylabel(dvnicename + '/' + ivnicename + '\nQuotient')
+
+# Turn on the minor TICKS, which are required for the minor GRID
+ax.minorticks_on()
+#ax.grid(which='major', linestyle='--', linewidth='0.5', color='gray', axis='x')
+#ax.grid(which='minor', linestyle='--', linewidth='0.5', color='gray', axis='y')
+# Turn off the display of ticks you don't want
+#ax.tick_params(axis='x', which='minor', top=False, bottom=False)   
 
 if plotlegend==1:
     # - Legend 1
