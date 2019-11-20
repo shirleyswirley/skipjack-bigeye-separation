@@ -13,6 +13,7 @@ RUN conda install -c conda-forge cartopy
 RUN conda install -c conda-forge nodejs
 RUN conda install -c conda-forge descartes
 RUN conda install -c conda-forge dask
+RUN conda install -c conda-forge gsw
 RUN pip install regionmask
 RUN jupyter labextension install jupyterlab_vim 
 #RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
