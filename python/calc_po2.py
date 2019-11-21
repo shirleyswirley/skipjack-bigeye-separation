@@ -16,6 +16,7 @@
 #temp in Celsius (= potential temperature, NOT in situ)
 #sal in psu
 #depth in m
+#po2 returned in kPa
 
 import numpy as np
 
