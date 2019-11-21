@@ -1,10 +1,10 @@
 -----------------------------------------------------
 SPECIFIC COMMANDS (copy/paste to run)
 -----------------------------------------------------
-docker build -t docker_miniconda_skjbetsep:v2 .
+docker build -t docker_miniconda_skjbetsep:v3 .
 
 --> this one for Shirley's local machine
-docker run --rm -i -t --mount type=bind,src=/Users/shirleyswirley/Desktop/githubrepos/skipjack-bigeye-separation,dst=/opt/skipjack-bigeye-separation -p 8877:8877 docker_miniconda_skjbetsep:v3
+docker run --rm -i -t --mount type=bind,src=/Users/shirleyswirley/Desktop/githubrepos/skipjack-bigeye-separation,dst=/opt/skipjack-bigeye-separation -p 8877:8877 docker_miniconda_skjbetsep:v4
 
 --> this one for google cloud
-docker run --rm -i -t --mount type=bind,src=/home/shirlleu/skipjack-bigeye-separation,dst=/opt/skipjack-bigeye-separation -p 8877:8877 docker_miniconda_skjbetsep:v3
+docker run --rm -i -t --mount type=bind,src=/home/shirlleu/skipjack-bigeye-separation,dst=/opt/skipjack-bigeye-separation -p 8877:8877 docker_miniconda_skjbetsep:v4
