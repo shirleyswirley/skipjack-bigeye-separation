@@ -15,6 +15,7 @@ RUN conda install -c conda-forge descartes
 RUN conda install -c conda-forge dask
 RUN conda install -c conda-forge gsw
 RUN pip install regionmask
+RUN pip install pygam
 RUN jupyter labextension install jupyterlab_vim 
 #RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
 #	&& apt-get install -y nodejs
