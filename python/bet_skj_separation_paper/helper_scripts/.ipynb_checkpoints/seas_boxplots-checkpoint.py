@@ -1,33 +1,35 @@
 #https://stackoverflow.com/questions/16592222/matplotlib-group-boxplots
 
 xscfactor = 2
-xoffsetfactor = 0.4
+xoffsetfactor = 0.18
 
-midpos = np.array(range(len(allnow)))*xscfactor 
-leftpos = midpos-xoffsetfactor
-rightpos = midpos+xoffsetfactor 
+midpos = np.array(range(len(winnow)))*xscfactor
+winpos = midpos - 3*xoffsetfactor
+sprpos = midpos - xoffsetfactor
+sumpos = midpos + xoffsetfactor
+autpos = midpos + 3*xoffsetfactor
 
-bpl = axnow.boxplot(ennow, positions=leftpos, sym='', widths=0.3)
-bpm = axnow.boxplot(allnow, positions=midpos, sym='', widths=0.3)
-bpr = axnow.boxplot(lnnow, positions=rightpos, sym='', widths=0.3)
+bpwin = axnow.boxplot(winnow, positions=winpos, sym='', widths=0.2)
+bpspr = axnow.boxplot(sprnow, positions=sprpos, sym='', widths=0.2)
+bpsum = axnow.boxplot(sumnow, positions=sumpos, sym='', widths=0.2)
+bpaut = axnow.boxplot(autnow, positions=autpos, sym='', widths=0.2)
 
 if plotsignif==1:
     signifpos = signifidxsnow*xscfactor
     ymin, ymax = axnow.get_ylim()
     axnow.scatter(signifpos, np.full_like(signifpos,ymin),
                   s=30, marker='*', color='black')
-    #medsnow = np.array(list(map(np.median, allnow)))
-    #axnow.scatter(signifpos, medsnow[signifidxsnow],
-    #              c='black', s=35, marker='*')
-    
-set_box_color(bpl, 'red')
-set_box_color(bpm, 'black')
-set_box_color(bpr, 'blue')
 
-# Draw temporary red and blue lines and use them to create a legend
-axnow.plot([], c='red', label='El Nino')
-axnow.plot([], c='black', label='All')
-axnow.plot([], c='blue', label='La Nina')
+set_box_color(bpwin, 'blue')
+set_box_color(bpspr, 'green')
+set_box_color(bpsum, 'red')
+set_box_color(bpaut, 'chocolate')
+
+# Draw temporary colored lines and use them to create a legend
+axnow.plot([], c='blue', label='Winter')
+axnow.plot([], c='green', label='Spring')
+axnow.plot([], c='red', label='Summer')
+axnow.plot([], c='chocolate', label='Fall')
 axnow.legend(frameon=False, loc='upper left', )
 
 # Turn on the minor TICKS, which are required for the minor GRID
