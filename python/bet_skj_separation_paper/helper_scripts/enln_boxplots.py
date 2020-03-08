@@ -14,7 +14,8 @@ bpr = axnow.boxplot(lnnow, positions=rightpos, sym='', widths=0.3)
 if plotsignif==1:
     signifpos = signifidxsnow*xscfactor
     ymin, ymax = axnow.get_ylim()
-    axnow.scatter(signifpos, np.full_like(signifpos,ymin),
+    yminplot = ymin + (ymax-ymin)/20
+    axnow.scatter(signifpos, np.full_like(signifpos,yminplot),
                   s=30, marker='*', color='black')
     #medsnow = np.array(list(map(np.median, allnow)))
     #axnow.scatter(signifpos, medsnow[signifidxsnow],
