@@ -28,7 +28,7 @@ for irow in range(0,len(dfatp)):
         #ax.tick_params(axis='x', labelrotation=45)
         ax.set_xlabel(ivnicename + ' [' + ivunits + ']')
         ax.set_yticks(ysplits[0:nspcs] + (1/nspcs/2))
-        ax.set_yticklabels(spcsnames)
+        ax.set_yticklabels(spcsnamesatp)
         ax.axhline(1/nspcs, color='black')
         
         # Turn on the minor TICKS, which are required for the minor GRID
