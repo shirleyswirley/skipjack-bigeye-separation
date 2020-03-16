@@ -1,16 +1,33 @@
-#https://stackoverflow.com/questions/16592222/matplotlib-group-boxplots
-
+# - Define boxplot x-axis positions
 xscfactor = 2
 xoffsetfactor = 0.4
-
 midpos = np.array(range(len(allnow)))*xscfactor 
 leftpos = midpos-xoffsetfactor
 rightpos = midpos+xoffsetfactor 
 
-bpl = axnow.boxplot(ennow, positions=leftpos, sym='', widths=0.3)
-bpm = axnow.boxplot(allnow, positions=midpos, sym='', widths=0.3)
-bpr = axnow.boxplot(lnnow, positions=rightpos, sym='', widths=0.3)
+# - Define boxplot visual params
+widthnow = 0.3
+notchnow = False
+patchnow = True
 
+# - Plot boxplot
+bpl = axnow.boxplot(ennow, positions=leftpos, sym='', whis=0,
+                    widths=widthnow, notch=notchnow,
+                    patch_artist=patchnow,
+                    boxprops={'color':'blue','facecolor':'blue'},
+                    medianprops={'linestyle':'-','color':'white'})
+bpm = axnow.boxplot(allnow, positions=midpos, sym='', whis=0,
+                    widths=widthnow, notch=notchnow,
+                    patch_artist=patchnow,
+                    boxprops={'color':'black','facecolor':'black'},
+                    medianprops={'linestyle':'-','color':'white'})
+bpr = axnow.boxplot(lnnow, positions=rightpos, sym='', whis=0,
+                    widths=widthnow, notch=notchnow,
+                    patch_artist=patchnow,
+                    boxprops={'color':'red','facecolor':'red'},
+                    medianprops={'linestyle':'-','color':'white'})
+
+# - Star significant EN/LN comparisons
 if plotsignif==1:
     signifpos = signifidxsnow*xscfactor
     ymin, ymax = axnow.get_ylim()
@@ -21,24 +38,21 @@ if plotsignif==1:
     #axnow.scatter(signifpos, medsnow[signifidxsnow],
     #              c='black', s=35, marker='*')
     
-set_box_color(bpl, 'red')
-set_box_color(bpm, 'black')
-set_box_color(bpr, 'blue')
-
-# Draw temporary red and blue lines and use them to create a legend
-axnow.plot([], c='red', label='El Nino')
+# - Draw temporary red and blue lines and use them to create a legend
+axnow.plot([], c='red', label='El Niño')
 axnow.plot([], c='black', label='All')
-axnow.plot([], c='blue', label='La Nina')
+axnow.plot([], c='blue', label='La Niña')
 axnow.legend(frameon=False, loc='upper left', )
 
-# Turn on the minor TICKS, which are required for the minor GRID
+# - Turn on the minor TICKS, which are required for the minor GRID
 axnow.minorticks_on()
 axnow.grid(which='major', linestyle='--', linewidth='0.5', color='gray', axis='y')
 #axnow.grid(which='minor', linestyle='--', linewidth='0.5', color='gray', axis='y')
 
-# Turn off the display of ticks you don't want
+# - Turn off the display of ticks you don't want
 axnow.tick_params(axis='x', which='minor', top=False, bottom=False)   
         
+# - Add title, labels, ticks
 axnow.set_title(titlenow)
 axnow.set_ylabel(unitsnow)
 axnow.set_xlim(-2, len(ticks)*2)
