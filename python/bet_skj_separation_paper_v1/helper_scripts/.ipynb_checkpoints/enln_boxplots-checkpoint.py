@@ -14,7 +14,7 @@ patchnow = True
 bpl = axnow.boxplot(ennow, positions=leftpos, sym='', whis=0,
                     widths=widthnow, notch=notchnow,
                     patch_artist=patchnow,
-                    boxprops={'color':'blue','facecolor':'blue'},
+                    boxprops={'color':'red','facecolor':'red'},
                     medianprops={'linestyle':'-','color':'white'})
 bpm = axnow.boxplot(allnow, positions=midpos, sym='', whis=0,
                     widths=widthnow, notch=notchnow,
@@ -24,7 +24,7 @@ bpm = axnow.boxplot(allnow, positions=midpos, sym='', whis=0,
 bpr = axnow.boxplot(lnnow, positions=rightpos, sym='', whis=0,
                     widths=widthnow, notch=notchnow,
                     patch_artist=patchnow,
-                    boxprops={'color':'red','facecolor':'red'},
+                    boxprops={'color':'blue','facecolor':'blue'},
                     medianprops={'linestyle':'-','color':'white'})
 
 # - Star significant EN/LN comparisons
