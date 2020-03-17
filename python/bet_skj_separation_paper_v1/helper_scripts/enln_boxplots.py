@@ -31,18 +31,22 @@ bpr = axnow.boxplot(lnnow, positions=rightpos, sym='', whis=0,
 if plotsignif==1:
     signifpos = signifidxsnow*xscfactor
     ymin, ymax = axnow.get_ylim()
-    yminplot = ymin + (ymax-ymin)/20
-    axnow.scatter(signifpos, np.full_like(signifpos,yminplot),
-                  s=30, marker='*', color='black')
+    if signifmarkup==0:
+        yplotnow = ymin + (ymax-ymin)/20
+    elif signifmarkup==1:
+        yplotnow = ymax - (ymax-ymin)/20
+    axnow.scatter(signifpos, np.full_like(signifpos,yplotnow),
+        s=30, marker='*', color=signifmarkcolnow)
     #medsnow = np.array(list(map(np.median, allnow)))
     #axnow.scatter(signifpos, medsnow[signifidxsnow],
     #              c='black', s=35, marker='*')
     
 # - Draw temporary red and blue lines and use them to create a legend
-axnow.plot([], c='red', label='El Niño')
-axnow.plot([], c='black', label='All')
-axnow.plot([], c='blue', label='La Niña')
-axnow.legend(frameon=False, loc='upper left', )
+if plotlegend==1:
+    axnow.plot([], c='red', label='El Niño')
+    axnow.plot([], c='black', label='All')
+    axnow.plot([], c='blue', label='La Niña')
+    axnow.legend(frameon=False, loc='upper left', )
 
 # - Turn on the minor TICKS, which are required for the minor GRID
 axnow.minorticks_on()

@@ -1,5 +1,5 @@
 # - Draw coastlines and/or land
-ax.coastlines()
+ax.coastlines(linewidth=0.4)
 #ax.add_feature(cartopy.feature.COASTLINES, facecolor='black')
 #ax.add_feature(cartopy.feature.LAND, facecolor='gray')
 

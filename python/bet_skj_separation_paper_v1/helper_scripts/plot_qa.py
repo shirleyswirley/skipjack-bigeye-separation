@@ -1,6 +1,6 @@
 if plotbarorhist=='bar':
     binwidth = bincenters[1]-bincenters[0]
-    ax.bar(bincenters-binwidth/6, ivcounts/ivcounts.sum(), binwidth/3, color='silver', label=ivnicename)
+    ax.bar(bincenters-binwidth/6, ivcounts/ivcounts.sum(), binwidth/3, color='silver', label=ivshortnicename)
     ax.bar(bincenters+binwidth/6, dvcounts/dvcounts.sum(), binwidth/3, color='lightskyblue', label=dvnicename)
 elif plotbarorhist=='hist':
     ax.hist(iv, bins=binedges, label='hist', color='white', edgecolor='black')
