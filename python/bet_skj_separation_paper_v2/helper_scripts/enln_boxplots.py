@@ -27,16 +27,22 @@ bpr = axnow.boxplot(lnnow, positions=rightpos, sym='', whis=0,
                     boxprops={'color':'blue','facecolor':'blue'},
                     medianprops={'linestyle':'-','color':'white'})
 
+# - Change y-axis lims
+if setylimnow==1:
+    axnow.set_ylim([yminnow,ymaxnow])
+    
 # - Star significant EN/LN comparisons
 if plotsignif==1:
     signifpos = signifidxsnow*xscfactor
     ymin, ymax = axnow.get_ylim()
-    if signifmarkup==0:
-        yplotnow = ymin + (ymax-ymin)/20
-    elif signifmarkup==1:
+    if signifmarkpos==1:
         yplotnow = ymax - (ymax-ymin)/20
+    elif signifmarkpos==0:
+        yplotnow = ymin + (ymax-ymin)/20
+    elif signifmarkpos==-1:
+        yplotnow = ymin
     axnow.scatter(signifpos, np.full_like(signifpos,yplotnow),
-        s=30, marker='*', color=signifmarkcolnow)
+        s=35, marker='*', color=signifmarkcolnow)
     #medsnow = np.array(list(map(np.median, allnow)))
     #axnow.scatter(signifpos, medsnow[signifidxsnow],
     #              c='black', s=35, marker='*')
