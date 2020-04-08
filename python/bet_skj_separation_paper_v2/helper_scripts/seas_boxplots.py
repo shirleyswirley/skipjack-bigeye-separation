@@ -46,16 +46,16 @@ if plotsignif==1:
                   s=35, marker='*', color='black')
 
 # - Draw temporary colored lines and use them to create a legend
-axnow.plot([], c='blue', label='Winter')
-axnow.plot([], c='green', label='Spring')
-axnow.plot([], c='red', label='Summer')
-axnow.plot([], c='chocolate', label='Fall')
-axnow.legend(frameon=False, loc='upper left', )
+if plotlegend==1:
+    axtopnow.plot([], c='blue', label='Winter')
+    axtopnow.plot([], c='green', label='Spring')
+    axtopnow.plot([], c='red', label='Summer')
+    axtopnow.plot([], c='chocolate', label='Fall')
+    axtopnow.legend(frameon=False, loc='upper left', )
 
 # - Turn on the minor TICKS, which are required for the minor GRID
 axnow.minorticks_on()
 axnow.grid(which='major', linestyle='--', linewidth='0.5', color='gray', axis='y')
-#axnow.grid(which='minor', linestyle='--', linewidth='0.5', color='gray', axis='y')
 
 # - Turn off the display of ticks you don't want
 axnow.tick_params(axis='x', which='minor', top=False, bottom=False)   
