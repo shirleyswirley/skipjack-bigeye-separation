@@ -11,28 +11,58 @@ autpos = midpos + 3*xoffsetfactor
 widthnow = 0.2
 notchnow = False
 patchnow = True
+meanlinewidth = 1
+meanlinecol = 'gold'
+meanlinestyle = '-'
+signifmarkcolnow = 'black'
 
 # - Plot boxplot
 bpwin = axnow.boxplot(winnow, positions=winpos, sym='', whis=0,
                       widths=widthnow, notch=notchnow,
                       patch_artist=patchnow,
+                      showmeans=True, meanline=True,
+                      meanprops=dict(linewidth=meanlinewidth, color=meanlinecol,
+                                   linestyle=meanlinestyle),
                       boxprops={'color':'blue','facecolor':'blue'},
                       medianprops={'linestyle':'-','color':'white'})
 bpspr = axnow.boxplot(sprnow, positions=sprpos, sym='', whis=0,
                       widths=widthnow, notch=notchnow,
                       patch_artist=patchnow,
+                      showmeans=True, meanline=True,
+                      meanprops=dict(linewidth=meanlinewidth, color=meanlinecol,
+                                   linestyle=meanlinestyle),
                       boxprops={'color':'green','facecolor':'green'},
                       medianprops={'linestyle':'-','color':'white'})
 bpsum = axnow.boxplot(sumnow, positions=sumpos, sym='', whis=0,
                       widths=widthnow, notch=notchnow,
                       patch_artist=patchnow,
+                      showmeans=True, meanline=True,
+                      meanprops=dict(linewidth=meanlinewidth, color=meanlinecol,
+                                   linestyle=meanlinestyle),
                       boxprops={'color':'red','facecolor':'red'},
                       medianprops={'linestyle':'-','color':'white'})
 bpaut = axnow.boxplot(autnow, positions=autpos, sym='', whis=0,
                       widths=widthnow, notch=notchnow,
                       patch_artist=patchnow,
+                      showmeans=True, meanline=True,
+                      meanprops=dict(linewidth=meanlinewidth, color=meanlinecol,
+                                   linestyle=meanlinestyle),
                       boxprops={'color':'chocolate','facecolor':'chocolate'},
                       medianprops={'linestyle':'-','color':'white'})
+
+# - Print out medians and means
+print(titlenow + ' win medians, means:')
+print([item.get_ydata()[1] for item in bpwin['medians']])
+print([item.get_ydata()[1] for item in bpwin['means']])
+print('spr medians, means:')
+print([item.get_ydata()[1] for item in bpspr['medians']])
+print([item.get_ydata()[1] for item in bpspr['means']])
+print('sum medians, means:')
+print([item.get_ydata()[1] for item in bpsum['medians']])
+print([item.get_ydata()[1] for item in bpsum['means']])
+print('aut medians, means:')
+print([item.get_ydata()[1] for item in bpaut['medians']])
+print([item.get_ydata()[1] for item in bpaut['means']])
 
 # - Change y-axis lims
 if setylimnow==1:
@@ -41,17 +71,17 @@ if setylimnow==1:
 # - Star significant season comparisons
 if plotsignif==1:
     signifpos = signifidxsnow*xscfactor
-    ymin, ymax = axnow.get_ylim()
-    axnow.scatter(signifpos, np.full_like(signifpos,ymin),
-                  s=35, marker='*', color='black')
+    yplotnow = 0
+    axnow.scatter(signifpos, np.full_like(signifpos,yplotnow),
+                  s=35, marker='*', color=signifmarkcolnow)
 
 # - Draw temporary colored lines and use them to create a legend
 if plotlegend==1:
-    axtopnow.plot([], c='blue', label='Winter')
-    axtopnow.plot([], c='green', label='Spring')
-    axtopnow.plot([], c='red', label='Summer')
-    axtopnow.plot([], c='chocolate', label='Fall')
-    axtopnow.legend(frameon=False, loc='upper left', )
+    axnow.plot([], c='blue', label='Winter')
+    axnow.plot([], c='green', label='Spring')
+    axnow.plot([], c='red', label='Summer')
+    axnow.plot([], c='chocolate', label='Fall')
+    axnow.legend(frameon=False, loc='upper left', )
 
 # - Turn on the minor TICKS, which are required for the minor GRID
 axnow.minorticks_on()

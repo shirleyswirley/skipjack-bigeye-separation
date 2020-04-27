@@ -1,3 +1,4 @@
+#https://matplotlib.org/3.1.0/gallery/statistics/boxplot.html
 # - Define boxplot x-axis positions
 xscfactor = 2
 xoffsetfactor = 0.4
@@ -9,23 +10,47 @@ rightpos = midpos+xoffsetfactor
 widthnow = 0.3
 notchnow = False
 patchnow = True
+meanlinewidth = 1
+meanlinecol = 'gold'
+meanlinestyle = '-'
+signifmarkcolnow = 'black'
 
 # - Plot boxplot
 bpl = axnow.boxplot(ennow, positions=leftpos, sym='', whis=0,
                     widths=widthnow, notch=notchnow,
                     patch_artist=patchnow,
+                    showmeans=True, meanline=True, 
+                    meanprops=dict(linewidth=meanlinewidth, color=meanlinecol,
+                                   linestyle=meanlinestyle),
                     boxprops={'color':'red','facecolor':'red'},
                     medianprops={'linestyle':'-','color':'white'})
 bpm = axnow.boxplot(allnow, positions=midpos, sym='', whis=0,
                     widths=widthnow, notch=notchnow,
                     patch_artist=patchnow,
+                    showmeans=True, meanline=True, 
+                    meanprops=dict(linewidth=meanlinewidth, color=meanlinecol,
+                                   linestyle=meanlinestyle),
                     boxprops={'color':'black','facecolor':'black'},
                     medianprops={'linestyle':'-','color':'white'})
 bpr = axnow.boxplot(lnnow, positions=rightpos, sym='', whis=0,
                     widths=widthnow, notch=notchnow,
                     patch_artist=patchnow,
+                    showmeans=True, meanline=True, 
+                    meanprops=dict(linewidth=meanlinewidth, color=meanlinecol,
+                                   linestyle=meanlinestyle),
                     boxprops={'color':'blue','facecolor':'blue'},
                     medianprops={'linestyle':'-','color':'white'})
+
+# - Print out medians and means
+print(titlenow + ' left medians, means:')
+print([item.get_ydata()[1] for item in bpl['medians']])
+print([item.get_ydata()[1] for item in bpl['means']])
+print('middle medians, means:')
+print([item.get_ydata()[1] for item in bpm['medians']])
+print([item.get_ydata()[1] for item in bpm['means']])
+print('right medians, means:')
+print([item.get_ydata()[1] for item in bpr['medians']])
+print([item.get_ydata()[1] for item in bpr['means']])
 
 # - Change y-axis lims
 if setylimnow==1:
@@ -34,18 +59,9 @@ if setylimnow==1:
 # - Star significant EN/LN comparisons
 if plotsignif==1:
     signifpos = signifidxsnow*xscfactor
-    ymin, ymax = axnow.get_ylim()
-    if signifmarkpos==1:
-        yplotnow = ymax - (ymax-ymin)/20
-    elif signifmarkpos==0:
-        yplotnow = ymin + (ymax-ymin)/20
-    elif signifmarkpos==-1:
-        yplotnow = ymin
+    yplotnow = 0
     axnow.scatter(signifpos, np.full_like(signifpos,yplotnow),
         s=35, marker='*', color=signifmarkcolnow)
-    #medsnow = np.array(list(map(np.median, allnow)))
-    #axnow.scatter(signifpos, medsnow[signifidxsnow],
-    #              c='black', s=35, marker='*')
     
 # - Draw temporary red and blue lines and use them to create a legend
 if plotlegend==1:
@@ -57,7 +73,6 @@ if plotlegend==1:
 # - Turn on the minor TICKS, which are required for the minor GRID
 axnow.minorticks_on()
 axnow.grid(which='major', linestyle='--', linewidth='0.5', color='gray', axis='y')
-#axnow.grid(which='minor', linestyle='--', linewidth='0.5', color='gray', axis='y')
 
 # - Turn off the display of ticks you don't want
 axnow.tick_params(axis='x', which='minor', top=False, bottom=False)   
