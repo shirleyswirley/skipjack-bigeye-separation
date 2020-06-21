@@ -1,0 +1,7 @@
+-----------------------------------------------------
+SPECIFIC COMMANDS (copy/paste to run)
+-----------------------------------------------------
+docker build -t docker_miniconda_skjbetsep:v6 .
+
+--> this one for google cloud
+docker run --rm -i -t --mount type=bind,src=/home/shirlleu/skipjack-bigeye-separation,dst=/opt/skipjack-bigeye-separation -p 8877:8877 docker_miniconda_skjbetsep:v6
