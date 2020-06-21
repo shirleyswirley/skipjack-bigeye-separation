@@ -14,6 +14,7 @@ RUN conda install -c conda-forge nodejs
 RUN conda install -c conda-forge descartes
 RUN conda install -c conda-forge dask
 RUN conda install -c conda-forge gsw
+RUN conda install -c conda-forge pillow
 RUN pip install regionmask
 RUN pip install pygam
 RUN jupyter labextension install jupyterlab_vim 
