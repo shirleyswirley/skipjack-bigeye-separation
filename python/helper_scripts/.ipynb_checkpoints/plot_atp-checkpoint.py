@@ -28,9 +28,17 @@ for irow in range(0,len(dfatp)):
         ax.axhline(1/nspcs, color='black')
         
         # - Turn on the minor TICKS, which are required for the minor GRID
+        #fl = mticker.FixedLocator(np.linspace(ax.get_xlim()[0],
+        #                                      ax.get_xlim()[1],
+        #                                      len(binedges)))
+        #ax.xaxis.set_minor_locator(fl)
+        #ax.xaxis.grid(which='minor', color='gray',
+        #              linestyle='--', linewidth=0.5)
         ax.minorticks_on()
-        ax.grid(which='major', linestyle='--', linewidth='0.5', color='gray', axis='x')
-        ax.grid(which='minor', linestyle='--', linewidth='0.5', color='gray', axis='x')
+        ax.grid(which='major', linestyle='--',
+                linewidth='0.5', color='gray', axis='x')
+        ax.grid(which='minor', linestyle='--',
+                linewidth='0.5', color='gray', axis='x')
         
         # - Turn off the display of ticks you don't want
         ax.tick_params(axis='y', which='minor', left=False, right=False)   
