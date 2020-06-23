@@ -1,2 +1,4 @@
 data/
 docker/generic_docker_command_list
+figures/*.pdf
+figures/*.tif
