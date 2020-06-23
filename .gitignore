@@ -1,3 +1,8 @@
+python/.ipynb_checkpoints
+python/figure_notebooks/.ipynb_checkpoints
+python/figures/.ipynb_checkpoints
+python/helper_notebooks/.ipynb_checkpoints
+python/helper_scripts/.ipynb_checkpoints
 data/
 docker/generic_docker_command_list
 figures/*.pdf
