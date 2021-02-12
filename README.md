@@ -1,7 +1,7 @@
 # Skipjack-bigeye lateral separation analysis
 
 The code in this repository reproduces figures in the following paper:
-<br>Leung, S., Mislan, K. A. S., & Thompson, L. ENSO drives lateral separation of FAD-associated skipjack and bigeye tuna in the Western Tropical Pacific. <i>Submitted to PLOS ONE.</i>
+<br>Leung, S., Mislan, K. A. S., & Thompson, L. ENSO drives lateral separation of FAD-associated skipjack and bigeye tuna in the Western Tropical Pacific. <i>On bioRxiv: https://www.biorxiv.org/content/10.1101/2020.06.25.170613v1.</i>
 
 Please cite the above paper and the code itself (here: https://doi.org/10.5281/zenodo.3904134) if you use any of it.
 
